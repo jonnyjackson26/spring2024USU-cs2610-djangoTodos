@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+
+<body>
+
+    <head>
+        <h1>To Do List</h1>
+    </head>
+    <main>
+        <form action="/todos/" method="post">
+            <label>
+                Todo:
+                <input type='text' name="content" id="content">
+            </label>
+            <button>Save</button>
+        </form>
+        <div>
+            {% if todos %}
+            {% for todo in todos %}
+            <div>
+                <input type="checkbox" data-todo-id="{{todo.id}}" {% if todo.is_completed %} checked {% endif %}>
+                <p>{{todo.content}}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>You have no to-dos.</p>
+            {% endif %}
+        </div>
+
+
+
+
+    </main>
+
+
+    <script src="/static/core/index.js"></script> <!--This is not right, obv. Its not static-->
+
+</body>
+
+</html>
